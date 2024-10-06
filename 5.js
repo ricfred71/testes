@@ -1,8 +1,8 @@
-// Recupera o texto do chrome.storage
-chrome.storage.local.get('selectedText', (result) => {
-  const selectedText = result.selectedText;
+// Solicita o texto capturado ao background.js
+chrome.runtime.sendMessage({ type: 'getSelectedText' }, (response) => {
+  const selectedText = response.selectedText;
   console.log('Texto recuperado:', selectedText);
-  
+
   // Preencher o input com o texto selecionado
   document.querySelector('input[type="text"]').value = selectedText;
 
